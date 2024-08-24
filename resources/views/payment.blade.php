@@ -40,13 +40,18 @@
             @if(session('overpaid'))
                 <div class="alert alert-warning mt-3">
                     Sorry, you overpaid by {{ session('overpaidAmount') }}.
-                    <form action="{{ route('coin-store') }}" method="post" class="d-inline">
-                        @csrf
-                        <input type="hidden" name="overpaidAmount" value="{{ session('overpaidAmount') }}">
-                        <input type="hidden" name="user_id" value="{{ session('user_id') }}">
-                        <button type="submit" class="btn btn-primary">Yes</button>
-                    </form>
-                    <a href="{{ route('payment') }}" class="btn btn-secondary">No</a>
+                    <div class="mt-3">
+                        <label for="response" class="form-label">Would you like to enter the balance into your wallet?</label>
+                        <div class="d-flex gap-2">
+                            <form action="{{ route('coin-store') }}" method="post" class="d-inline">
+                                @csrf
+                                <input type="hidden" name="overpaidAmount" value="{{ session('overpaidAmount') }}">
+                                <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+                                <button type="submit" class="btn btn-primary">Yes</button>
+                            </form>
+                            <a href="{{ route('payment') }}" class="btn btn-secondary">No</a>
+                        </div>
+                    </div>
                 </div>
             @endif
 
